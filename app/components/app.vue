@@ -1,5 +1,11 @@
+<style lang="scss">
+    .app {
+        font-weight: bold;
+    }
+</style>
+
 <template>
-    <div>Hello Testing 123</div>
+    <div class="app">Hello Testing 123</div>
 </template>
 
 <script lang="ts">
