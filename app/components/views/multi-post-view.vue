@@ -1,6 +1,20 @@
+<style lang="scss">
+    @import "../../style/_mixins.scss";
+
+    .multi-post-view {
+        @include main-content;
+
+        .more-link {
+            cursor: pointer;
+        }
+    }
+</style>
+
+
 <template>
     <div class="multi-post-view">
-        <post v-for="(post) in displayPosts" :key="post.id" :display-post="post"></post>
+        <post v-for="(post) in apiPosts" :key="post.id" :api-post="post"></post>
+        <a class="more-link" v-if="hasMorePosts" @click="loadMorePosts">More posts</a>
     </div>
 </template>
 
@@ -19,27 +33,30 @@
         }
     })
     export default class MultiPostView extends Vue {
-        private apiPosts: ApiPost[] = [];
-        private nextPostId: number = null;
+        apiPosts: ApiPost[] = [];
+        nextPostId: number = null;
 
-        get displayPosts(){
-            return this.apiPosts.map(post => {
-                return {
-                    id: post.id
-                };
-            });
-        }
+        @Prop({ default: null })
+        tag: string;
 
         mounted() {
+            this.apiPosts = [];
+            this.nextPostId = null;
             this.loadPosts();
         }
 
-        loadPosts() {
-            if(this.nextPostId == null && this.apiPosts.length !== 0){
-                console.warn("No more posts");
-            }
+        loadMorePosts(){
+            this.loadPosts(this.nextPostId);
+        }
 
-            const response = axios.get("http://localhost:3000/posts/all")
+        get hasMorePosts() {
+            return this.nextPostId != null;
+        }
+
+        private loadPosts(nextId?: number) {
+            const params = nextId != null ? `?next=${nextId}` : "";
+
+            const response = axios.get(`http://localhost:3000/posts/all${params}`)
                 .then(response => {
                     const data = response.data as ApiPostSet;
 

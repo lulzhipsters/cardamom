@@ -41,6 +41,11 @@
     border-spacing: 0; }
 
     /* Custom */
+    @import "../style/_variables.scss";
+
+    .app {
+        font-family: $standard-font;
+    }
 
 </style>
 

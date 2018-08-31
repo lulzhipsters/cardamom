@@ -14,6 +14,7 @@ const router = new VueRouter({
         { name: routeNames.PostById, path: "/posts/id/:postId", component: SinglePostView, props: true },
         { name: routeNames.PostBySlug, path: "/posts/:postSlug", component: SinglePostView, props: true },
         { name: routeNames.Posts, path: "/posts", component: MultiPostView },
+        { name: routeNames.PostsWithTag, path: "/posts/tagged/:tag", component: MultiPostView, props: true },
         { name: routeNames.Error, path: "/oops"},
         { path: "*", redirect: "/posts"}
     ]

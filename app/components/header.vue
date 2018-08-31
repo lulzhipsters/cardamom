@@ -1,5 +1,5 @@
 <style lang="scss">
-    @import "../variables.scss";
+    @import "../style/_variables.scss";
     .header {
         width: 100vw;
         height: 4rem;
