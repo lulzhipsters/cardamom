@@ -1,6 +1,9 @@
 {
     "compilerOptions": {
+        "target": "ES2015",
         "module": "commonjs",
-        "noImplicitAny": true
+        "noImplicitAny": true,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true
     }
 }

@@ -1,8 +1,9 @@
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
+require("@babel/polyfill");
 
 module.exports = {
     entry: {
-        "./dist/main": "./app/main.ts"
+        "./dist/main": ["@babel/polyfill", "./app/main.ts"]
     },
     module: {
         rules: [
