@@ -1,7 +1,7 @@
 <style lang="scss">
     @import "../style/_variables.scss";
     .header {
-        width: 100vw;
+        width: 100%;
         height: 4rem;
 
         box-sizing: border-box;
@@ -13,13 +13,14 @@
         .title {
             font-size: 3rem;
             font-family: $accent-font;
+            cursor: pointer;
         }
     }
 </style>
 
 <template>
     <div class="header">
-        <div class="title">Cardamom</div>
+        <span class="title" role="button" @click="goHome">Cardamom</span>
     </div>
 </template>
 
@@ -29,7 +30,9 @@
 
     @Component()
     export default class Header extends Vue {
-        
+        goHome(){
+            this.$router.push("/");
+        }
     }
 </script>
 

@@ -1,6 +1,15 @@
+<style lang="scss">
+    @import "../../style/_mixins.scss";
+
+    .post-view {
+        @include main-content;
+    }
+</style>
+
+
 <template>
     <div class="post-view">
-
+        <div class="post-title">{{title}}</div>
     </div>
 </template>
 
@@ -14,7 +23,7 @@
     
     @Component()
     export default class SinglePostView extends Vue {
-        private apiPost: ApiPost
+        private apiPost: ApiPost = null;
 
         @Prop({ default: null })
         postId: number;
@@ -22,14 +31,19 @@
         @Prop({ default: null })
         postSlug: string;
 
-        mounted() {
-            const postUrl = this.postSlug !== null 
-                ? `http://localhost:3000/posts/slug/${this.postSlug}`
-                : `http://localhost:3000/posts/${this.postId}`;
+        get title() {
+            return this.apiPost == null
+                ? "" 
+                : this.apiPost.title;
+        }
 
-            const response = axios.get(postUrl)
+        mounted() {
+            const postUrl = this.postSlug !== null ? `/posts/slug/${this.postSlug}` : `/posts/${this.postId}`;
+
+            const response = this.$http.get(postUrl)
                 .then(response => {
                     this.apiPost = response.data as ApiPost
+
                 }).catch(e => {
                     this.$router.push({ name: routeNames.Error })
 

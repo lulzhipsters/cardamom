@@ -1,22 +1,36 @@
 <style lang="scss">
+    @import "../style/_variables.scss";
+
     .post {
         .post-title {
+            cursor: pointer;
             font-weight: bold;
             font-size: 2rem;
+            margin: .5rem 0 .5rem 0;
         }
 
-        margin-bottom: 2rem;
+        .published-date {
+            font-size: .8rem;
+            color: $muted-text-color;
+        }
 
-        cursor: pointer;
+        .post-banner-container {
+            &.no-image {
+                background-color: #2f50a3;
+                width: 100%;
+                padding-bottom: 30%;
+            }
+            
+        }
     }
 </style>
 
-
 <template>
-    <div class="post" role="button" @click="openPost">
-        <div class="post-banner-container"></div>
-        <div class="post-title">{{apiPost.title}}</div>
-        Post with Id: {{apiPost.id}}
+    <div class="post">
+        <div class="post-banner-container" :class="{ 'no-image': !apiPost.banner }"></div>
+        <div class="post-title" role="button" @click="openPost">{{apiPost.title}}</div>
+        <when-display class="published-date" :date="apiPost.publishedDate"></when-display>
+        <tag-list class="tag-list" :tags="apiPost.tags" hide-after="2" justify="end"></tag-list>
     </div>
 </template>
 
@@ -28,8 +42,15 @@
     import * as routeNames from "../constants/routeNames";
 
     import ApiPost from "../coriander-api/ApiPost"; 
+    import WhenDisplay from "./library/when-display.vue";
+    import TagList from "./library/tag-list.vue";
 
-    @Component()
+    @Component({
+        components: {
+            "when-display": WhenDisplay,
+            "tag-list": TagList
+        }
+    })
     export default class Post extends Vue {
         @Prop()
         apiPost: ApiPost

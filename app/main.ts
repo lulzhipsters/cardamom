@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import http from "./http";
 
 import * as routeNames from "./constants/routeNames";
 
@@ -8,6 +9,7 @@ import MultiPostView from "./components/views/multi-post-view.vue";
 import SinglePostView from "./components/views/single-post-view.vue";
 
 Vue.use(VueRouter);
+Vue.use(http, { baseUrl: "http://localhost:3000/"});
 
 const router = new VueRouter({
     routes: [

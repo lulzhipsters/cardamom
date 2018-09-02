@@ -1,4 +1,5 @@
 <style lang="scss">
+    @import "../../style/_variables.scss";
     @import "../../style/_mixins.scss";
 
     .multi-post-view {
@@ -6,6 +7,19 @@
 
         .more-link {
             cursor: pointer;
+
+            font-weight: bold;
+            color: $muted-text-color;
+
+            margin-top: 2rem;
+
+            &:hover {
+                color: darken($muted-text-color, 25%);
+            }
+        }
+
+        .post {
+            margin-bottom: 7rem;
         }
     }
 </style>
@@ -13,14 +27,14 @@
 
 <template>
     <div class="multi-post-view">
-        <post v-for="(post) in apiPosts" :key="post.id" :api-post="post"></post>
+        <post class="post" v-for="(post) in apiPosts" :key="post.id" :api-post="post"></post>
         <a class="more-link" v-if="hasMorePosts" @click="loadMorePosts">More posts</a>
     </div>
 </template>
 
 <script lang="ts">
     import Vue from 'vue'
-    import { Component, Prop } from "vue-typed";
+    import { Component, Prop, Watch } from "vue-typed";
     import axios from "axios";
     
     import ApiPost from "../../coriander-api/ApiPost";
@@ -39,6 +53,13 @@
         @Prop({ default: null })
         tag: string;
 
+        @Watch("tag")
+        onTagChanged(val: string){
+            this.apiPosts = [];
+            this.nextPostId = null;
+            this.loadPosts();
+        }
+
         mounted() {
             this.apiPosts = [];
             this.nextPostId = null;
@@ -46,17 +67,18 @@
         }
 
         loadMorePosts(){
-            this.loadPosts(this.nextPostId);
+            this.loadPosts();
         }
 
         get hasMorePosts() {
             return this.nextPostId != null;
         }
 
-        private loadPosts(nextId?: number) {
-            const params = nextId != null ? `?next=${nextId}` : "";
+        loadPosts() {
+            const route = !this.tag ? "/posts/all" : `/posts/tagged/${this.tag}`;
+            const params = this.nextPostId != null ? `?next=${this.nextPostId}` : "";
 
-            const response = axios.get(`http://localhost:3000/posts/all${params}`)
+            const response = this.$http.get(`${route}${params}`)
                 .then(response => {
                     const data = response.data as ApiPostSet;
 

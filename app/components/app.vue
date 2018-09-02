@@ -45,6 +45,7 @@
 
     .app {
         font-family: $standard-font;
+        color: $standard-text-color;
     }
 
 </style>
