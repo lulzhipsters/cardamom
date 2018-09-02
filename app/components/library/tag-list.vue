@@ -89,7 +89,8 @@
         }
 
         get enableHide() {
-            return this.hideAfter != null && this.tags.length > 0;
+            return (this.hideAfter != null && this.tags.length > 0) 
+                && this.tags.length > this.hideAfter;
         }
 
         get flexJustify() {

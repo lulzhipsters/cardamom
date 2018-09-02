@@ -1,5 +1,6 @@
 <style lang="scss">
     @import "../style/_variables.scss";
+    @import "../style/_mixins.scss";
 
     .post {
         .post-title {
@@ -14,23 +15,28 @@
             color: $muted-text-color;
         }
 
-        .post-banner-container {
+        .post-banner {
+            width: 100%;
+
             &.no-image {
-                background-color: #2f50a3;
-                width: 100%;
                 padding-bottom: 30%;
             }
-            
+
+            &.back-0 { @include pattern-brady(#be83ee, #6a4f81, white)}//{ @include pattern-steps(#5f00ad, rgb(224, 204, 255))}//{ background-color: #2f50a3;}
+            &.back-1 { @include pattern-seigaiha(#fa9176, white)}
+            &.back-2 { @include pattern-shippo(#de4343)}
+            &.back-3 { @include pattern-seigaiha(#348de7, #ccedfd)}
+            &.back-4 { @include pattern-seigaiha(#0ec577, white)}//{ background-color: #0ec577; }
         }
     }
 </style>
 
 <template>
     <div class="post">
-        <div class="post-banner-container" :class="{ 'no-image': !apiPost.banner }"></div>
+        <img class="post-banner" :src="apiPost.banner" :class="imgClasses">
         <div class="post-title" role="button" @click="openPost">{{apiPost.title}}</div>
         <when-display class="published-date" :date="apiPost.publishedDate"></when-display>
-        <tag-list class="tag-list" :tags="apiPost.tags" hide-after="2" justify="end"></tag-list>
+        <tag-list class="tag-list" :tags="apiPost.tags" hide-after="3" justify="end"></tag-list>
     </div>
 </template>
 
@@ -60,6 +66,18 @@
                     name: routeNames.PostBySlug,
                     params: { postSlug: this.apiPost.slug }
                 })
+        }
+
+        get imgClasses() {
+            const classes = { 
+                "no-image": !this.apiPost.banner,
+            } as any;
+
+            const backgroundClass = `back-${this.apiPost.id % 5}`;
+
+            classes[backgroundClass] = true;
+            
+            return classes
         }
     }
 </script>

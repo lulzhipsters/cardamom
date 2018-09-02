@@ -28,14 +28,14 @@
 <template>
     <div class="multi-post-view">
         <post class="post" v-for="(post) in apiPosts" :key="post.id" :api-post="post"></post>
-        <a class="more-link" v-if="hasMorePosts" @click="loadMorePosts">More posts</a>
+        <infinite-load v-if="hasMorePosts" @infinite="loadMorePosts" spinner="waveDots"></infinite-load>
     </div>
 </template>
 
 <script lang="ts">
     import Vue from 'vue'
     import { Component, Prop, Watch } from "vue-typed";
-    import axios from "axios";
+    import InfiniteLoading from "vue-infinite-loading";
     
     import ApiPost from "../../coriander-api/ApiPost";
     import ApiPostSet from "../../coriander-api/ApiPostSet";
@@ -43,7 +43,8 @@
 
     @Component({
         components: {
-            "post": Post
+            "post": Post,
+            "infinite-load": InfiniteLoading
         }
     })
     export default class MultiPostView extends Vue {
@@ -67,7 +68,9 @@
         }
 
         loadMorePosts(){
-            this.loadPosts();
+            if(this.nextPostId != null){
+                this.loadPosts();
+            }
         }
 
         get hasMorePosts() {
