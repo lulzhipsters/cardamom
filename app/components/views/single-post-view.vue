@@ -4,12 +4,25 @@
     .post-view {
         @include main-content;
     }
+
+    .post-title {
+        font-weight: bold;
+        font-size: 3rem;
+
+        margin: 3rem 0;
+    }
+
+    .social-links {
+        font-size: .8rem;
+    }
 </style>
 
 
 <template>
     <div class="post-view">
+        <post-banner :banner-url="bannerUrl" :post-id="id"></post-banner>
         <div class="post-title">{{title}}</div>
+        <social-shares class="social-links"></social-shares>
     </div>
 </template>
 
@@ -20,8 +33,15 @@
 
     import * as routeNames from "../../constants/routeNames";
     import ApiPost from '../../coriander-api/ApiPost';
+    import SocialShares from '../library/social-shares.vue';
+    import PostBanner from '../post-banner.vue';
     
-    @Component()
+    @Component({
+        components: {
+            "social-shares": SocialShares,
+            "post-banner": PostBanner
+        }
+    })
     export default class SinglePostView extends Vue {
         private apiPost: ApiPost = null;
 
@@ -31,10 +51,22 @@
         @Prop({ default: null })
         postSlug: string;
 
+        get id() {
+            return this.apiPost == null
+                ? null
+                : this.apiPost.id;
+        }
+
         get title() {
             return this.apiPost == null
                 ? "" 
                 : this.apiPost.title;
+        }
+
+        get bannerUrl() {
+            return this.apiPost == null
+                ? ""
+                : this.apiPost.banner;
         }
 
         mounted() {
