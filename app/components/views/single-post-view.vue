@@ -1,5 +1,6 @@
 <style lang="scss">
     @import "../../style/_mixins.scss";
+    @import "../../style/_variables.scss";
 
     .post-view {
         @include main-content;
@@ -8,8 +9,19 @@
     .post-title {
         font-weight: bold;
         font-size: 3rem;
+        margin: 1rem 0;
+    }
 
-        margin: 3rem 0;
+    .post-published {
+        color: $muted-text-color;
+    }
+
+    .post-content {
+        margin: 3rem 0 6rem;
+    }
+
+    .post-tags {
+        margin-bottom: 2rem;
     }
 
     .social-links {
@@ -22,6 +34,10 @@
     <div class="post-view">
         <post-banner :banner-url="bannerUrl" :post-id="id"></post-banner>
         <div class="post-title">{{title}}</div>
+        <when-display class="post-published" :date="publishedDate"></when-display>
+        <markdown-render class="post-content" :text="content"></markdown-render>
+        <tag-list class="post-tags" :tags="tags"></tag-list>
+        <content-divider></content-divider>
         <social-shares class="social-links"></social-shares>
     </div>
 </template>
@@ -29,17 +45,24 @@
 <script lang="ts">
     import Vue from 'vue'
     import { Component, Prop } from "vue-typed";
-    import axios from "axios";
 
     import * as routeNames from "../../constants/routeNames";
     import ApiPost from '../../coriander-api/ApiPost';
     import SocialShares from '../library/social-shares.vue';
     import PostBanner from '../post-banner.vue';
+    import MarkdownRender from '../library/markdown-render.vue';
+    import WhenDisplay from '../library/when-display.vue';
+    import TagList from '../library/tag-list.vue';
+    import ContentDivider from '../library/content-divider.vue';
     
     @Component({
         components: {
             "social-shares": SocialShares,
-            "post-banner": PostBanner
+            "post-banner": PostBanner,
+            "markdown-render": MarkdownRender,
+            "when-display": WhenDisplay,
+            "tag-list": TagList,
+            "content-divider": ContentDivider
         }
     })
     export default class SinglePostView extends Vue {
@@ -67,6 +90,24 @@
             return this.apiPost == null
                 ? ""
                 : this.apiPost.banner;
+        }
+
+        get publishedDate() {
+            return this.apiPost == null
+                ? ""
+                : this.apiPost.publishedDate;
+        }
+
+        get tags(): string[] {
+            return this.apiPost == null
+                ? []
+                : this.apiPost.tags;
+        }
+
+        get content() {
+            return this.apiPost == null
+                ? ""
+                : this.apiPost.content;
         }
 
         mounted() {

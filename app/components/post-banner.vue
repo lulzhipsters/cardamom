@@ -41,10 +41,13 @@
 
         get imgClasses() {
             const classes = {} as any;
-            const backgroundClass = `back-${this.postId % 5}`;
 
-            classes["no-image"] = !this.bannerUrl;
-            classes[backgroundClass] = true;
+            if(this.postId != null){
+                const backgroundClass = `back-${this.postId % 5}`;
+                classes[backgroundClass] = true;
+                classes["no-image"] = !this.bannerUrl;
+            }
+            
             
             return classes
         }

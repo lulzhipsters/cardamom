@@ -1,3 +1,5 @@
+// http://sharingbuttons.io/
+
 <style lang="scss">
     .social-shares {
         .resp-sharing-button__link,
