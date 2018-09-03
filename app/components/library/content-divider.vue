@@ -3,11 +3,12 @@
 
     .content-divider {
         width: 100%;
-        height: 5px;
+        height: 2px;
 
-        background-color: $standard-text-color;
+        //background-color: $standard-text-color;
+        background-color: #dadada;
 
-        margin: 2rem 0;
+        margin: 1rem 0;
     }
 </style>
 

@@ -14,14 +14,20 @@
 
     .post-published {
         color: $muted-text-color;
+        margin-bottom: .5rem;
     }
 
     .post-content {
-        margin: 3rem 0 6rem;
+        margin: 3rem 0 4rem;
     }
 
     .post-tags {
-        margin-bottom: 2rem;
+        margin-bottom: 4rem;
+    }
+
+    .share-prompt {
+        margin-bottom: .5rem;
+        color: $muted-text-color;
     }
 
     .social-links {
@@ -35,9 +41,13 @@
         <post-banner :banner-url="bannerUrl" :post-id="id"></post-banner>
         <div class="post-title">{{title}}</div>
         <when-display class="post-published" :date="publishedDate"></when-display>
+        
         <markdown-render class="post-content" :text="content"></markdown-render>
-        <tag-list class="post-tags" :tags="tags"></tag-list>
+        
+        <tag-list class="post-tags" :tags="tags" justify="start"></tag-list>
         <content-divider></content-divider>
+
+        <div class="share-prompt">Share this:</div>
         <social-shares class="social-links"></social-shares>
     </div>
 </template>

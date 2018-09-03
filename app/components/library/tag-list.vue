@@ -6,6 +6,8 @@
         flex-wrap: wrap;
         align-items: center;
 
+        margin: 0 -.2rem;
+
         &.flex-start {
             justify-content: flex-start;
         }
@@ -16,8 +18,9 @@
 
         .tag-badge,
         .toggle-more {
-            padding: .2rem .5rem .2rem .5rem;
-            margin: .2rem;
+            padding: .3rem .5rem .3rem .5rem;
+            margin: .1rem;
+            border-radius: 3px;
         }
 
         .tag-badge {
