@@ -1,8 +1,16 @@
 $standard-font: "Open Sans", Roboto, Tahoma, sans-serif;
+$header-font: "Merriweather", serif;
 $accent-font: "Oleo Script", Georgia, serif;
+$code-font: "Roboto Mono", Consolas, monospace;
 
 $standard-text-color: #383838;
 $muted-text-color: #969696;
+
+$code-text-color: $standard-text-color;
+$code-text-background: #f0f0f0;
+
+$link-color: #e4a700;
+$link-color-hover: #b38508;
 
 //Major 3rd scale (1.250)
 $font-size-xxxl: 2.441em;
