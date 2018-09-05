@@ -9,7 +9,7 @@
         .post-title {
             cursor: pointer;
             font-weight: bold;
-            font-size: 2rem;
+            font-size: $font-size-xxl;
         }
 
         .post-banner-container {
@@ -17,8 +17,12 @@
         }
 
         .published-date {
-            font-size: .8rem;
+            font-size: $font-size-sm;
             color: $muted-text-color;
+        }
+
+        .tag-list {
+            font-size: $font-size-sm;
         }
     }
 </style>

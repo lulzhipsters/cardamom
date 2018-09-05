@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import http from "./http";
+import * as showdown from "showdown";
 
 import * as routeNames from "./constants/routeNames";
 

@@ -42,6 +42,15 @@
 
     /* Custom */
     @import "../style/_variables.scss";
+    @import "../style/_mixins.scss";
+
+    html {
+        font-size: calc( 18px + (22 - 18) * (100vw - 400px) / (800 - 350));
+
+        @media only screen and (min-width: 800px){
+            font-size: 22px;
+        }
+    }
 
     .app {
         font-family: $standard-font;

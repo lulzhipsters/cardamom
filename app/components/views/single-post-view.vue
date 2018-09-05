@@ -8,21 +8,42 @@
 
     .post-title {
         font-weight: bold;
-        font-size: 3rem;
+        font-size: $font-size-xxxl;
         margin: 1rem 0;
     }
 
     .post-published {
+        font-size: $font-size-sm;
         color: $muted-text-color;
         margin-bottom: .5rem;
     }
 
     .post-content {
         margin: 3rem 0 4rem;
+        
+        $rhythm-unit: 1.3;
+
+        p {
+            line-height: $rhythm-unit;
+            //text-align: justify;
+            font-size: $font-size-md;
+            margin-bottom: $rhythm-unit * .5rem;
+        }
+
+        h1,h2,h3,h4,h5,h6 {
+            font-weight: bold;
+            margin: ($rhythm-unit * 2.5rem) 0 ($rhythm-unit * 1rem);
+        }
+
+        h1 { font-size: $font-size-xxl; }
+        h2 { font-size: $font-size-xl; }
+        h3 { font-size: $font-size-lg; }
+        h4,h5,h6 { font-size: $font-size-md; font-weight: bolder }
     }
 
     .post-tags {
         margin-bottom: 4rem;
+        font-size: .8rem;
     }
 
     .share-prompt {

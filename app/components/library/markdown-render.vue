@@ -9,10 +9,16 @@
 
     @Component()
     export default class MarkdownRender extends Vue {
-        private converter = new showdown.Converter();
+        private converter: showdown.Converter = null;
         
         @Prop({ default: "" })
         text: string;
+
+        created(){
+            this.converter = new showdown.Converter({
+                emoji: true //emoji not in ts def at this time
+            } as any)
+        }
 
         get html() {
             return this.converter.makeHtml(this.text);

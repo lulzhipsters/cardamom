@@ -1,5 +1,5 @@
 @mixin main-content {
-    max-width: 750px;
+    max-width: 800px;
     margin: 2rem auto;
     padding: 1rem;
 }
@@ -12,7 +12,7 @@
     radial-gradient(circle at 50%  100%, $color2 10%, $color1 11%, $color1 23%, $color2 24%, $color2 30%, $color1 31%, $color1 43%, $color2 44%, $color2 50%, $color1 51%, $color1 63%, $color2 64%, $color2 71%, transparent 71%, transparent),
     radial-gradient(circle at 100% 50%, $color2 5%, $color1 6%, $color1 15%, $color2 16%, $color2 20%, $color1 21%, $color1 30%, $color2 31%, $color2 35%, $color1 36%, $color1 45%, $color2 46%, $color2 49%, transparent 50%, transparent),
     radial-gradient(circle at 0    50%, $color2 5%, $color1 6%, $color1 15%, $color2 16%, $color2 20%, $color1 21%, $color1 30%, $color2 31%, $color2 35%, $color1 36%, $color1 45%, $color2 46%, $color2 49%, transparent 50%, transparent);
-    background-size:100px 50px;
+    background-size:80px 40px;
 }
 
 @mixin pattern-shippo($color) {
@@ -48,7 +48,7 @@
     background-image:
     radial-gradient(closest-side, transparent 0%, transparent 75%, $color1d 76%, $color1d 85%, $color2d 86%, $color2d 94%, $color3 95%, $color3 103%, $color1 104%, $color1 112%, $color3d 113%, $color3d 121%, $color3 122%, $color3 130%, $color2 131%, $color2 140%),
     radial-gradient(closest-side, transparent 0%, transparent 75%, $color1d 76%, $color1d 85%, $color2d 86%, $color2d 94%, $color3 95%, $color3 103%, $color1 104%, $color1 112%, $color3d 113%, $color3d 121%, $color3 122%, $color3 130%, $color2 131%, $color2 140%);
-    background-size: 110px 110px;
+    background-size: 80px 80px;
     background-color: $color1;
-    background-position: 0 0, 55px 55px;
+    background-position: 0 0, 40px 40px;
 }

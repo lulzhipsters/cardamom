@@ -2,7 +2,7 @@
     @import "../style/_variables.scss";
     .header {
         width: 100%;
-        height: 4rem;
+        height: 3rem;
 
         box-sizing: border-box;
         padding: .5rem;
@@ -11,7 +11,7 @@
         color: #f4f4f4;
 
         .title {
-            font-size: 3rem;
+            font-size: 2rem;
             font-family: $accent-font;
             cursor: pointer;
         }
