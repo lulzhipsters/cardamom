@@ -5,19 +5,6 @@
     .multi-post-view {
         @include main-content;
 
-        .more-link {
-            cursor: pointer;
-
-            font-weight: bold;
-            color: $muted-text-color;
-
-            margin-top: 2rem;
-
-            &:hover {
-                color: darken($muted-text-color, 25%);
-            }
-        }
-
         .post {
             margin-bottom: 7rem;
         }
@@ -27,6 +14,7 @@
 
 <template>
     <div class="multi-post-view">
+        <current-tag-bar :tag="tag" v-if="tag != null"></current-tag-bar>
         <post class="post" v-for="(post) in apiPosts" :key="post.id" :api-post="post"></post>
         <infinite-load v-if="hasMorePosts" @infinite="loadMorePosts" spinner="waveDots"></infinite-load>
     </div>
@@ -40,11 +28,13 @@
     import ApiPost from "../../coriander-api/ApiPost";
     import ApiPostSet from "../../coriander-api/ApiPostSet";
     import Post from '../post.vue';
+    import CurrentTagBar from '../current-tag-bar.vue';
 
     @Component({
         components: {
             "post": Post,
-            "infinite-load": InfiniteLoading
+            "infinite-load": InfiniteLoading,
+            "current-tag-bar": CurrentTagBar
         }
     })
     export default class MultiPostView extends Vue {

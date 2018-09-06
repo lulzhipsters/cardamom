@@ -2,16 +2,15 @@
     @import "../style/_variables.scss";
     .header {
         width: 100%;
-        height: 3rem;
 
         box-sizing: border-box;
-        padding: .5rem;
+        padding: .75rem 1rem;
 
-        background-color: #8a5be1;
-        color: #f4f4f4;
+        background-color: $header-color;
+        color: $header-text-color;
 
         .title {
-            font-size: 2rem;
+            font-size: $font-size-xxl;
             font-family: $accent-font;
             cursor: pointer;
         }

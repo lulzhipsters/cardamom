@@ -7,55 +7,15 @@
     }
 
     .post-title {
-        //font-weight: bold;
         font-family: $header-font;
         font-size: $font-size-xxxl;
-        margin: 1rem 0;
+        margin: 3rem 0 .5rem;
     }
 
     .post-published {
         font-size: $font-size-sm;
         color: $muted-text-color;
         margin-bottom: .5rem;
-    }
-
-    .post-content {
-        margin: 3rem 0 4rem;
-        
-        $rhythm-unit: 1.5;
-        line-height: $rhythm-unit;
-
-        p {
-            //text-align: justify;
-            font-size: $font-size-md;
-            margin-bottom: $rhythm-unit * .5rem;
-        }
-
-        h1,h2,h3,h4,h5,h6 {
-            font-family: $header-font;
-            // font-weight: bold;
-            margin: ($rhythm-unit * 2rem) 0 ($rhythm-unit * .75rem);
-        }
-
-        h1 { font-size: $font-size-xxl; }
-        h2 { font-size: $font-size-xl; }
-        h3 { font-size: $font-size-lg; }
-        h4,h5,h6 { font-size: $font-size-md; font-weight: bolder }
-
-        a {
-            color: $link-color;
-
-            &:hover {
-                color: $link-color-hover;
-            }
-        }
-
-        code {
-            font-family: $code-font;
-            color: $code-text-color;
-            background-color: $code-text-background;
-            padding: 0 .3rem .2rem;
-        }
     }
 
     .post-tags {
@@ -80,8 +40,8 @@
         <div class="post-title">{{title}}</div>
         <when-display class="post-published" :date="publishedDate"></when-display>
         
-        <markdown-render class="post-content" :text="content"></markdown-render>
-        
+        <post-content class="post-content" :text="content"></post-content>
+
         <tag-list class="post-tags" :tags="tags" justify="start"></tag-list>
         <content-divider></content-divider>
 
@@ -98,16 +58,16 @@
     import ApiPost from '../../coriander-api/ApiPost';
     import SocialShares from '../library/social-shares.vue';
     import PostBanner from '../post-banner.vue';
-    import MarkdownRender from '../library/markdown-render.vue';
     import WhenDisplay from '../library/when-display.vue';
     import TagList from '../library/tag-list.vue';
     import ContentDivider from '../library/content-divider.vue';
+    import PostContent from '../post-content.vue';
     
     @Component({
         components: {
             "social-shares": SocialShares,
             "post-banner": PostBanner,
-            "markdown-render": MarkdownRender,
+            "post-content": PostContent,
             "when-display": WhenDisplay,
             "tag-list": TagList,
             "content-divider": ContentDivider

@@ -9,11 +9,12 @@
         .post-title {
             cursor: pointer;
             font-weight: bold;
-            font-size: $font-size-xxl;
+            font-size: $font-size-xl;
         }
 
         .post-banner-container {
             cursor: pointer;
+            margin-bottom: 1rem;
         }
 
         .published-date {

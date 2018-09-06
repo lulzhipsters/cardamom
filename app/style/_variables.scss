@@ -3,14 +3,19 @@ $header-font: "Merriweather", serif;
 $accent-font: "Oleo Script", Georgia, serif;
 $code-font: "Roboto Mono", Consolas, monospace;
 
+$header-text-color: #f4f4f4;
 $standard-text-color: #383838;
-$muted-text-color: #969696;
+$muted-text-color: #383838af;//#969696;
 
 $code-text-color: $standard-text-color;
 $code-text-background: #f0f0f0;
 
+$header-color: #8a5be1;
+
 $link-color: #e4a700;
 $link-color-hover: #b38508;
+
+$tag-bar-color: #ffd86e;
 
 //Major 3rd scale (1.250)
 $font-size-xxxl: 2.441em;
