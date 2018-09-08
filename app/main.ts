@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import http from "./http";
-import * as showdown from "showdown";
 
 import * as routeNames from "./constants/routeNames";
 
@@ -19,7 +18,19 @@ const router = new VueRouter({
         { name: routeNames.PostsWithTag, path: "/posts/tagged/:tag", component: MultiPostView, props: true },
         { name: routeNames.Error, path: "/oops"},
         { path: "*", redirect: "/posts"}
-    ]
+    ],
+    scrollBehavior: (to, from, saved) => {
+        if(saved){
+            const handler = (e: Event) => {
+                e.target.removeEventListener(e.type, handler);
+
+                window.scrollTo(saved.x, saved.y);
+            }
+            debugger;
+
+            document.addEventListener("scrollToSaved", handler);
+        }
+    }
 });
 
 new App({

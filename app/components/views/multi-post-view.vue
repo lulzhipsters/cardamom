@@ -66,7 +66,10 @@
         loadNewPosts() {
             this.apiPosts = [];
             this.nextPostId = null;
-            this.loadPosts(this.postsUrl);
+            this.loadPosts(this.postsUrl)
+                .then(() => {
+                    document.dispatchEvent(new Event("scrollToSaved"));
+                });
         }
 
         get hasMorePosts() {
@@ -74,7 +77,7 @@
         }
 
         loadPosts(url: string) {
-            this.$http.get(url)
+            return this.$http.get(url)
                 .then(response => {
                     const data = response.data as ApiPostSet;
 

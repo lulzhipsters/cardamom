@@ -121,14 +121,16 @@
         }
 
         mounted() {
-            this.loadPost();
+            this.loadPost()
+                .then(() => {
+                    document.dispatchEvent(new Event("scrollToSaved"));
+                })
         }
 
         private loadPost(){
-            this.$http.get(`/posts/slug/${this.postSlug}`)
+            return this.$http.get(`/posts/slug/${this.postSlug}`)
                 .then(response => {
                     this.apiPost = response.data as ApiPost
-
                 }).catch(e => {
                     this.$router.push({ name: routeNames.Error })
 
