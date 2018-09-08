@@ -26,7 +26,6 @@ const router = new VueRouter({
 
                 window.scrollTo(saved.x, saved.y);
             }
-            debugger;
 
             document.addEventListener("scrollToSaved", handler);
         }

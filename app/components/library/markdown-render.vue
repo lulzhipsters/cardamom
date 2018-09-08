@@ -16,6 +16,8 @@
 
         created(){
             this.converter = new showdown.Converter({
+                ghCodeBlocks: true,
+                strikethrough: true,
                 emoji: true //emoji not in ts def at this time
             } as any)
         }

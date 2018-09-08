@@ -30,11 +30,22 @@
             }
         }
 
+        em {
+            font-style: italic;
+        }
+
+        strong {
+            font-weight: bolder;
+        }
+
         code {
             font-family: $code-font;
             color: $code-text-color;
             background-color: $code-text-background;
-            padding: .1rem .3rem;
+        }
+
+        pre {
+            background-color: $code-text-background;
         }
 
         img {
@@ -45,6 +56,42 @@
             
             margin: ($rhythm-unit * 1.5rem) auto;
         }
+
+        ul,ol {
+            margin-bottom: $rhythm-unit * .5rem;
+            margin-left: 2rem;            
+        }
+
+        ul {
+            li {
+                margin-left: -1rem;
+
+                &:before {
+                    content: "-";
+                    margin-right: 1rem;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        ol {
+            li {
+                margin-left: -1rem;
+                counter-increment: step-counter;
+
+                &:before {
+                    content: counter(step-counter) ".";
+                    margin-right: 1rem;
+                    font-size: $font-size-sm;
+                    font-weight: bold;
+                }
+            }
+
+            &::marker {
+                font-size: $font-size-sm;
+            }
+        }
+
     }
 </style>
 
