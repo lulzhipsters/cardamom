@@ -23,7 +23,8 @@
         }
 
         get displayText() {
-            if(this.date == null){
+            if(this.date == null 
+                || isNaN(new Date(this.date).getMinutes())){
                 return "";
             }
 
