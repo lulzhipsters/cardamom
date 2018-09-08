@@ -46,32 +46,35 @@
 
         @Watch("tag")
         onTagChanged(val: string){
-            this.apiPosts = [];
-            this.nextPostId = null;
-            this.loadPosts();
+            this.loadNewPosts();
         }
 
         mounted() {
-            this.apiPosts = [];
-            this.nextPostId = null;
-            this.loadPosts();
+            this.loadNewPosts();
+        }
+
+        get postsUrl() {
+            return !this.tag ? "/posts/all" : `/posts/tagged/${this.tag}`;
         }
 
         loadMorePosts(){
             if(this.nextPostId != null){
-                this.loadPosts();
+                this.loadPosts(`this.postsUrl?next=${this.nextPostId}`);
             }
+        }
+
+        loadNewPosts() {
+            this.apiPosts = [];
+            this.nextPostId = null;
+            this.loadPosts(this.postsUrl);
         }
 
         get hasMorePosts() {
             return this.nextPostId != null;
         }
 
-        loadPosts() {
-            const route = !this.tag ? "/posts/all" : `/posts/tagged/${this.tag}`;
-            const params = this.nextPostId != null ? `?next=${this.nextPostId}` : "";
-
-            const response = this.$http.get(`${route}${params}`)
+        loadPosts(url: string) {
+            this.$http.get(url)
                 .then(response => {
                     const data = response.data as ApiPostSet;
 

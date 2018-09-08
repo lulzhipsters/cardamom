@@ -14,7 +14,6 @@ Vue.use(http, { baseUrl: "http://localhost:3000/"});
 
 const router = new VueRouter({
     routes: [
-        { name: routeNames.PostById, path: "/posts/id/:postId", component: SinglePostView, props: true },
         { name: routeNames.PostBySlug, path: "/posts/:postSlug", component: SinglePostView, props: true },
         { name: routeNames.Posts, path: "/posts", component: MultiPostView },
         { name: routeNames.PostsWithTag, path: "/posts/tagged/:tag", component: MultiPostView, props: true },

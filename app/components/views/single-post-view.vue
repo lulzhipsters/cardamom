@@ -52,7 +52,7 @@
 
 <script lang="ts">
     import Vue from 'vue'
-    import { Component, Prop } from "vue-typed";
+    import { Component, Prop, Watch } from "vue-typed";
 
     import * as routeNames from "../../constants/routeNames";
     import ApiPost from '../../coriander-api/ApiPost';
@@ -77,10 +77,12 @@
         private apiPost: ApiPost = null;
 
         @Prop({ default: null })
-        postId: number;
-
-        @Prop({ default: null })
         postSlug: string;
+
+        @Watch("postSlug")
+        onSlugChange() {
+            this.loadPost();
+        }
 
         get id() {
             return this.apiPost == null
@@ -119,9 +121,11 @@
         }
 
         mounted() {
-            const postUrl = this.postSlug !== null ? `/posts/slug/${this.postSlug}` : `/posts/${this.postId}`;
+            this.loadPost();
+        }
 
-            const response = this.$http.get(postUrl)
+        private loadPost(){
+            this.$http.get(`/posts/slug/${this.postSlug}`)
                 .then(response => {
                     this.apiPost = response.data as ApiPost
 
