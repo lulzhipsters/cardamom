@@ -57,6 +57,37 @@
         color: $standard-text-color;
     }
 
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+    ::-webkit-scrollbar-button {
+        width: 0px;
+        height: 0px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #8d8c8c96;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #8f8f8f;
+    }
+    ::-webkit-scrollbar-thumb:active {
+        background: $scroll-active-color;
+    }
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    ::-webkit-scrollbar-track:hover {
+        background: #e7e7e700;
+    }
+    ::-webkit-scrollbar-track:active {
+        background: transparent;
+    }
+    ::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+
+
 </style>
 
 <template>
