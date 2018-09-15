@@ -24,21 +24,22 @@
         }
 
         .tag-badge {
-            background-color: #dadada;
+            background-color: $tag-bar-color;
+            color: $tag-bar-text-color;
             white-space: nowrap;
             cursor: pointer;
 
             &:hover {
-                background-color: darken(#dadada, 10);
+                background-color: darken($tag-bar-color, 10);
             }
         }
 
         .toggle-more {
-            background-color: #a6a6a6;
+            background-color: darken($tag-bar-color, 30);
             cursor: pointer;
 
             &:hover {
-                background-color: darken(#a6a6a6, 10);
+                background-color: darken($tag-bar-color, 40);
             }
         }
     }

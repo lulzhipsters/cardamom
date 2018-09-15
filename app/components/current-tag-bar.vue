@@ -7,6 +7,7 @@
         margin-bottom: 2rem;
         padding: .75rem;
 
+        color: $tag-bar-text-color;
         background-color: $tag-bar-color;
         font-size: $font-size-md;
 

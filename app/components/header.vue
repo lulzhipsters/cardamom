@@ -1,58 +1,67 @@
 <style lang="scss">
     @import "../style/_variables.scss";
     .header {
+        position: fixed;
         width: 100%;
+        top: 0;
 
-        box-sizing: border-box;
-        padding: .75rem 1rem;
+        .header-bar {
+            width: 100%;
 
-        background-color: $header-color;
-        color: $header-text-color;
+            box-sizing: border-box;
+            padding: .75rem 1rem;
 
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+            background-color: $header-color;
+            color: $header-text-color;
 
-        .title-container {
+            //border-bottom: 2px solid $header-text-color;
+
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            
-            cursor: pointer;
-            max-width: 75%;
-        }
 
-        .title {
-            display: inline-block;
-            font-size: $font-size-xxl;
-            font-family: $accent-font;
-        }
+            .title-container {
+                display: flex;
+                align-items: center;
+                
+                cursor: pointer;
+            }
 
-        .sub-title {
-            font-size: $font-size-xs;
-        }
+            .title {
+                display: inline-block;
+                font-size: $font-size-xxl;
+                font-family: $accent-font;
+            }
 
-        .logo-img {
-            margin: -.5rem .5rem -.5rem 0;
+            .sub-title {
+                font-size: $font-size-xs;
+                letter-spacing: 1px;
+            }
 
-            display: inline-block;
-            background-image: $logo-image;
-            background-repeat: no-repeat;
-            background-size: fit;
-            height: 4rem;
-            width: 4rem;
-            
-        }
+            .logo-img {
+                margin: -.5rem .5rem -.5rem 0;
 
-        .tag-button {
-            cursor: pointer;
-            font-size: $font-size-sm;
+                display: inline-block;
+                background-image: $logo-image;
+                background-repeat: no-repeat;
+                background-size: fit;
+                height: 4rem;
+                width: 4rem;
+                
+            }
+
+            .tag-button {
+                cursor: pointer;
+                font-size: $font-size-sm;
+                color: $muted-text-color;
+            }
         }
     }
 </style>
 
 <template>
-    <div>
-        <div class="header">
+    <div id="header" class="header">
+        <div class="header-bar">
             <div class="title-container" role="button" @click="goHome">
                 <div class="logo-img"></div>
                 <div>
@@ -62,7 +71,7 @@
             </div>
             <div class="tag-button" role="button" @click="toggleTagSelect">Tags</div>
         </div>
-        <tag-select :show="showTags"></tag-select>
+        <tag-select class="header-drawer" :show="showTags"></tag-select>
     </div>
 </template>
 

@@ -14,6 +14,7 @@
 
         overflow-x: auto;
         background-color: $header-drawer-color;
+        //border-top: 2px solid $header-text-color;
         
         display: flex;
         flex-direction: column;
@@ -22,7 +23,7 @@
         .tag {
             padding: .5rem 1rem;
 
-            color: $header-text-color;
+            color: $header-drawer-text-color;
             font-size: $font-size-sm;
 
             transition: all .2s ease-out .0s;
@@ -47,8 +48,6 @@
 <template>
     <div class="tag-select" :class="{ 'show': show }">
         <div class="tag" v-for="tag in tags" :key="tag" role="button" @click="selectTag(tag)">{{tag}}</div>
-        <div class="tag" v-for="tag in tags" :key="tag + '1'" role="button" @click="selectTag(tag)">{{tag}}</div>
-        <div class="tag" v-for="tag in tags" :key="tag + '2'" role="button" @click="selectTag(tag)">{{tag}}</div>
     </div>
 </template>
 
