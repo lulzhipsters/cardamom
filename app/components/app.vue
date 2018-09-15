@@ -41,11 +41,12 @@
     border-spacing: 0; }
 
     /* Custom */
+    @import "../style/_transitions.scss";
     @import "../style/_variables.scss";
     @import "../style/_mixins.scss";
 
     html {
-        font-size: calc( 16px + (22 - 16) * (100vw - 400px) / (800 - 350));
+        font-size: calc( 18px + (22 - 18) * (100vw - 400px) / (800 - 350));
 
         @media only screen and (min-width: 800px){
             font-size: 22px;
@@ -93,7 +94,9 @@
 <template>
     <div class="app">
         <main-header></main-header>
-        <router-view></router-view>
+        <transition name="fade">
+            <router-view></router-view>
+        </transition>
     </div>
 </template>
 

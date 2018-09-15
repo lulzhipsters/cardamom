@@ -14,8 +14,10 @@
 
 <template>
     <div class="multi-post-view">
-        <current-tag-bar :tag="tag" v-if="tag != null"></current-tag-bar>
-        <post class="post" v-for="(post) in apiPosts" :key="post.id" :api-post="post"></post>
+        <transition-group name="fade">
+            <current-tag-bar :tag="tag" v-if="tag != null" key="tag-bar"></current-tag-bar>
+            <post class="post" v-for="(post) in apiPosts" :key="post.id" :api-post="post"></post>
+        </transition-group>
         <infinite-load v-if="hasMorePosts" @infinite="loadMorePosts" spinner="waveDots"></infinite-load>
     </div>
 </template>

@@ -4,6 +4,7 @@
         position: fixed;
         width: 100%;
         top: 0;
+        z-index: 999;
 
         .header-bar {
             width: 100%;
@@ -14,11 +15,11 @@
             background-color: $header-color;
             color: $header-text-color;
 
-            //border-bottom: 2px solid $header-text-color;
-
             display: flex;
             justify-content: space-between;
             align-items: center;
+
+            transition: all .3s ease;
 
             .title-container {
                 display: flex;
@@ -27,27 +28,40 @@
                 cursor: pointer;
             }
 
+            .titles {
+                flex-shrink: 2;
+            }
+
             .title {
                 display: inline-block;
-                font-size: $font-size-xxl;
+                font-size: $font-size-xl;
                 font-family: $accent-font;
             }
 
             .sub-title {
                 font-size: $font-size-xs;
                 letter-spacing: 1px;
+
+                @media (max-width: 450px) {
+                    display: none;
+                }
             }
 
-            .logo-img {
+            .logo-image {
                 margin: -.5rem .5rem -.5rem 0;
 
-                display: inline-block;
                 background-image: $logo-image;
                 background-repeat: no-repeat;
-                background-size: fit;
+                background-size: contain;
                 height: 4rem;
                 width: 4rem;
+
+                @media (max-width: 450px) {
+                    height: 3rem;
+                    width: 3rem;
+                }
                 
+                transition: all .3s ease;
             }
 
             .tag-button {
@@ -56,18 +70,36 @@
                 color: $muted-text-color;
             }
         }
+
+        &.scrolled {
+            .header-bar {
+                padding: .25rem .5rem;
+
+                transition-delay: .3s;
+
+                .logo-image {
+                    margin-left: 0;
+                    height: 3rem;
+                    width: 3rem;
+
+                    transition-delay: .3s;
+                }
+            }
+        }
     }
 </style>
 
 <template>
-    <div id="header" class="header">
+    <div id="header" class="header" :class="{ 'scrolled': scrolled }">
         <div class="header-bar">
             <div class="title-container" role="button" @click="goHome">
-                <div class="logo-img"></div>
-                <div>
-                    <div class="title">{{title}}</div>
-                    <div class="sub-title">{{subTitle}}</div>
-                </div>
+                <div class="logo-image"></div>
+                <transition name="fade">
+                    <div class="titles" v-if="!scrolled">
+                        <div class="title">{{title}}</div>
+                        <div class="sub-title">{{subTitle}}</div>
+                    </div>
+                </transition>
             </div>
             <div class="tag-button" role="button" @click="toggleTagSelect">Tags</div>
         </div>
@@ -88,6 +120,7 @@
     })
     export default class Header extends Vue {
         showTags = false;
+        scrolled = false;
         
         // on any route change hide the header drawer
         @Watch("$route")
@@ -109,6 +142,14 @@
 
         toggleTagSelect() {
             this.showTags = !this.showTags;
+        }
+
+        onScroll() {
+            this.scrolled = window.scrollY > 25;
+        }
+
+        mounted() {
+            window.addEventListener("scroll", this.onScroll)
         }
     }
 </script>

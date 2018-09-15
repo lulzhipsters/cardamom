@@ -18,28 +18,19 @@
 
         .tag-badge,
         .toggle-more {
+            cursor: pointer;
+
+            white-space: nowrap;
+
             padding: .3rem .5rem .3rem .5rem;
             margin: .1rem;
             border-radius: 3px;
-        }
 
-        .tag-badge {
             background-color: $tag-bar-color;
             color: $tag-bar-text-color;
-            white-space: nowrap;
-            cursor: pointer;
 
             &:hover {
                 background-color: darken($tag-bar-color, 10);
-            }
-        }
-
-        .toggle-more {
-            background-color: darken($tag-bar-color, 30);
-            cursor: pointer;
-
-            &:hover {
-                background-color: darken($tag-bar-color, 40);
             }
         }
     }
