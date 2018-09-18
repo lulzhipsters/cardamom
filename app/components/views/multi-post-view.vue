@@ -6,7 +6,7 @@
         @include main-content;
 
         .post {
-            margin-bottom: 7rem;
+            margin-bottom: 5rem;
         }
     }
 </style>
@@ -19,6 +19,7 @@
             <post class="post" v-for="(post) in apiPosts" :key="post.id" :api-post="post"></post>
         </transition-group>
         <infinite-load v-if="hasMorePosts" @infinite="loadMorePosts" spinner="waveDots"></infinite-load>
+        <scroll-to-top></scroll-to-top>
     </div>
 </template>
 
@@ -31,12 +32,14 @@
     import ApiPostSet from "../../coriander-api/ApiPostSet";
     import Post from '../post.vue';
     import CurrentTagBar from '../current-tag-bar.vue';
+    import ToTop from '../library/to-top.vue';
 
     @Component({
         components: {
             "post": Post,
             "infinite-load": InfiniteLoading,
-            "current-tag-bar": CurrentTagBar
+            "current-tag-bar": CurrentTagBar,
+            "scroll-to-top": ToTop
         }
     })
     export default class MultiPostView extends Vue {
@@ -45,11 +48,6 @@
 
         @Prop({ default: null })
         tag: string;
-
-        @Watch("tag")
-        onTagChanged(val: string){
-            this.loadNewPosts();
-        }
 
         mounted() {
             this.loadNewPosts();
@@ -70,7 +68,8 @@
             this.nextPostId = null;
             this.loadPosts(this.postsUrl)
                 .then(() => {
-                    document.dispatchEvent(new Event("scrollToSaved"));
+                    Vue.nextTick()
+                        .then(() => document.dispatchEvent(new Event("scrollToSaved")));
                 });
         }
 

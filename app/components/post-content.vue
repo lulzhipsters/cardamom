@@ -17,9 +17,9 @@
             margin: ($rhythm-unit * 1.75em) 0 ($rhythm-unit * .5em);
         }
 
-        h1 { font-size: $font-size-xxl; }
-        h2 { font-size: $font-size-xl; }
-        h3 { font-size: $font-size-lg; }
+        h1 { font-size: $font-size-xxl; font-weight: bold; }
+        h2 { font-size: $font-size-xl; font-weight: bold; }
+        h3 { font-size: $font-size-lg; font-weight: bold; }
         h4,h5,h6 { font-size: $font-size-md; font-weight: bolder }
 
         a {

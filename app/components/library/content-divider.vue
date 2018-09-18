@@ -5,7 +5,6 @@
         width: 100%;
         height: 2px;
 
-        //background-color: $standard-text-color;
         background-color: #dadada;
 
         margin: 1rem 0;
@@ -19,6 +18,9 @@
 
 <script lang="ts">
     import Vue from 'vue'
+    import { Component } from "vue-typed";
+
+    @Component()
     export default class ContentDivider extends Vue {
 
     }

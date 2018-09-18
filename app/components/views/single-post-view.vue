@@ -9,6 +9,7 @@
     .post-title {
         font-family: $header-font;
         font-size: $font-size-xxxl;
+        font-weight: bold;
         margin: 3rem 0 .5rem;
     }
 
@@ -26,6 +27,7 @@
     .share-prompt {
         margin-bottom: .5rem;
         color: $muted-text-color;
+        font-size: $font-size-sm;
     }
 
     .social-links {
@@ -79,11 +81,6 @@
         @Prop({ default: null })
         postSlug: string;
 
-        @Watch("postSlug")
-        onSlugChange() {
-            this.loadPost();
-        }
-
         get id() {
             return this.apiPost == null
                 ? null
@@ -123,7 +120,8 @@
         mounted() {
             this.loadPost()
                 .then(() => {
-                    document.dispatchEvent(new Event("scrollToSaved"));
+                    Vue.nextTick()
+                        .then(() => document.dispatchEvent(new Event("scrollToSaved")));
                 })
         }
 

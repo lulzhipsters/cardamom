@@ -25,7 +25,7 @@ const router = new VueRouter({
             const handler = (e: Event) => {
                 e.target.removeEventListener(e.type, handler);
 
-                window.scrollTo(saved.x, saved.y);
+                window.scrollTo({ left: saved.x, top: saved.y, behavior: "smooth" });
             }
 
             document.addEventListener("scrollToSaved", handler);

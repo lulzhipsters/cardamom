@@ -95,7 +95,7 @@
     <div class="app">
         <main-header></main-header>
         <transition name="fade">
-            <router-view></router-view>
+            <router-view :key="$route.fullPath"></router-view>
         </transition>
     </div>
 </template>

@@ -93,7 +93,7 @@
     <div id="header" class="header" :class="{ 'scrolled': scrolled }">
         <div class="header-bar">
             <div class="title-container" role="button" @click="goHome">
-                <div class="logo-image"></div>
+                <div class="logo-image" :title="title"></div>
                 <transition name="fade">
                     <div class="titles" v-if="!scrolled">
                         <div class="title">{{title}}</div>

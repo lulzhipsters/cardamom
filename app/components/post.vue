@@ -8,7 +8,6 @@
 
         .post-title {
             cursor: pointer;
-            font-weight: bold;
             font-size: $font-size-xl;
         }
 
@@ -20,6 +19,7 @@
         .published-date {
             font-size: $font-size-sm;
             color: $muted-text-color;
+            margin-bottom: .25rem;
         }
 
         .tag-list {

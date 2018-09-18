@@ -3,19 +3,17 @@ $header-font: "Merriweather", serif;
 $accent-font: "Oleo Script", Georgia, serif;
 $code-font: "Roboto Mono", Consolas, monospace;
 
-//https://coolors.co/fca311-211a1d-ffffff-8dd383-e5e5e5
-
-$standard-text-color: #211A1D;
-$muted-text-color: #211A1D98;
+$standard-text-color: #363234;
+$muted-text-color: #36323498;
 
 $code-text-color: $standard-text-color;
 $code-text-background: #E5E5E5;
 
 $header-color: #8DD383;
-$header-text-color: #211A1D;
+$header-text-color: #363234;
 
 $header-drawer-color: #E5E5E5;
-$header-drawer-text-color: #211A1D;
+$header-drawer-text-color: #363234;
 
 $link-color: #FCA311;
 $link-color-hover: darken(#FCA311, 20);
@@ -24,6 +22,8 @@ $tag-bar-color: #E5E5E5;
 $tag-bar-text-color: $standard-text-color;
 
 $scroll-active-color: #FCA311;
+
+$scroll-top-color: #FCA311;
 
 // Option 1
 // $standard-text-color: #383838;
